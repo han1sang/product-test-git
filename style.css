@@ -1,32 +1,72 @@
 :root {
   --primary-color: #4a90e2;
-  --secondary-color: #f5f5f5;
-  --accent-color: #ffcc00;
   --bg-color: #f0f2f5;
+  --container-bg: #ffffff;
+  --text-color: #333333;
+  --ball-bg: #ffffff;
+  --ball-border: #dddddd;
+  --placeholder-color: #cccccc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --btn-hover-bg: #357abd;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --container-bg: #2d2d2d;
+  --text-color: #f5f5f5;
+  --ball-bg: #3d3d3d;
+  --ball-border: #4a4a4a;
+  --placeholder-color: #666666;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --btn-hover-bg: #5fa4f5;
 }
 
 body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg-color);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#theme-btn {
+  background: var(--container-bg);
+  border: 1px solid var(--ball-border);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  transition: all 0.3s ease;
 }
 
 .container {
-  background: white;
+  background: var(--container-bg);
   padding: 2.5rem;
   border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px var(--shadow-color);
   text-align: center;
   width: 90%;
   max-width: 500px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 h1 {
-  color: #333;
+  color: var(--text-color);
   margin-bottom: 2rem;
   font-size: 1.8rem;
 }
@@ -43,30 +83,31 @@ h1 {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  background: white;
-  border: 2px solid #ddd;
+  background: var(--ball-bg);
+  border: 2px solid var(--ball-border);
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
   font-size: 1.3rem;
-  box-shadow: 2px 4px 6px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 2px 4px 6px var(--shadow-color);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, opacity 0.5s ease;
+  color: var(--text-color);
 }
 
 .ball.placeholder {
-  color: #ccc;
+  color: var(--placeholder-color);
   border-style: dashed;
 }
 
-/* 로또 번호대별 색상 */
+/* 로또 번호대별 색상 (다크 모드에서도 가독성을 위해 살짝 조정 가능) */
 .color-1 { background: #fbc400; color: white; border-color: #fbc400; }
 .color-11 { background: #69c8f2; color: white; border-color: #69c8f2; }
 .color-21 { background: #ff7272; color: white; border-color: #ff7272; }
 .color-31 { background: #aaaaaa; color: white; border-color: #aaaaaa; }
 .color-41 { background: #b0d840; color: white; border-color: #b0d840; }
 
-button {
+#generate-btn {
   background-color: var(--primary-color);
   color: white;
   border: none;
@@ -79,13 +120,13 @@ button {
   box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
 }
 
-button:hover {
-  background-color: #357abd;
+#generate-btn:hover {
+  background-color: var(--btn-hover-bg);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
 }
 
-button:active {
+#generate-btn:active {
   transform: translateY(0);
 }
 
