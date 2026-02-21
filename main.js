@@ -1,4 +1,9 @@
-document.getElementById('generate-btn').addEventListener('click', generateLottoNumbers);
+document.addEventListener('DOMContentLoaded', () => {
+  const generateBtn = document.getElementById('generate-btn');
+  if (generateBtn) {
+    generateBtn.addEventListener('click', generateLottoNumbers);
+  }
+});
 
 function generateLottoNumbers() {
   const container = document.getElementById('lotto-numbers');
@@ -32,15 +37,17 @@ function generateLottoNumbers() {
 
     ball.textContent = num;
     
-    // 약간의 딜레이와 함께 표시되도록 애니메이션 효과
+    // 초기 투명도 및 위치 설정
     ball.style.opacity = '0';
     ball.style.transform = 'translateY(20px)';
+    ball.style.transition = 'all 0.5s ease';
+    
     container.appendChild(ball);
 
+    // 약간의 딜레이와 함께 표시되도록 애니메이션 효과
     setTimeout(() => {
-      ball.style.transition = 'all 0.5s ease';
       ball.style.opacity = '1';
       ball.style.transform = 'translateY(0)';
-    }, index * 100);
+    }, index * 100 + 50); // 약간의 딜레이 추가
   });
 }
